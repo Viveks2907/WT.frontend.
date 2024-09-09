@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Website</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    .navbar {
+      width: 100%;
+      background-color: #2c3e50;
+      overflow: auto;
+      padding: 10px 0;
+    }
+    .navbar button, .dropdown .dropbtn {
+      float: left;
+      padding: 12px 20px;
+      color: #ecf0f1;
+      text-align: center;
+      font-size: 17px;
+      border: none;
+      background-color: #2c3e50;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .navbar button:hover, .dropdown .dropbtn:hover, .dropdown-content button:hover {
+      background-color: #1abc9c;
+      color: white;
+    }
+    .dropdown {
+      float: left;
+      overflow: hidden;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #34495e;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    .dropdown-content button {
+      float: none;
+      color: #ecf0f1;
+      padding: 12px 16px;
+      text-align: left;
+      width: 100%;
+      display: block;
+      background-color: inherit;
+      font-size: 17px;
+      border: none;
+      cursor: pointer;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .content {
+      padding: 20px;
+      margin-top: 50px;
+    }
+    .content h1, .content h2 {
+      color: #2c3e50;
+    }
+    .content p {
+      color: #7f8c8d;
+      line-height: 1.6;
+    }
+    .content-section {
+      display: none;
+    }
+    .content-section.active {
+      display: block;
+    }
+    .navbar button.active, .dropdown-content button.active {
+      background-color: #1abc9c;
+      color: white;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+    }
+    .dropdown-select {
+      margin: 20px 0;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #34495e;
+      border-radius: 5px;
+      background-color: #ecf0f1;
+    }
+    .chart-container {
+      width: 80%;
+      margin: 20px 0;
+    }
+    .data-container {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #2c3e50;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(8, 50px);
+      grid-gap: 5px;
+    }
+    .button {
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background-color: grey;
+      cursor: pointer;
+      outline: none;
+    }
+    .button.active {
+      background-color: grey;
+    }
+    .button.inactive {
+      background-color: red;
+    }
+    .reset-button, .try-button, .save-button, .apply-button, .audio-button, .animations-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .reset-button:hover, .try-button:hover, .save-button:hover, .apply-button:hover, .audio-button:hover, .animations-button:hover {
+      background-color: #0056b3;
+    }
+    .button-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .comment-box {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #ecf0f1;
+      border: 1px solid #34495e;
+      border-radius: 5px;
+    }
+    .comment-box textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border: 1px solid #34495e;
+      border-radius: 5px;
+      font-size: 16px;
+      resize: none;
+    }
+    .comment-box button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .comment-box button:hover {
+      background-color: #0056b3;
+    }
+    .schedule-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin: 20px;
+    }
+    .schedule-form label {
+      font-size: 16px;
+      color: #2c3e50;
+    }
+    .schedule-form input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #34495e;
+      border-radius: 5px;
+      width: 200px;
+    }
+    .schedule-form .time-range {
+      display: flex;
+      gap: 10px;
+    }
+    .personal-details {
+      text-align: center;
+      margin: 20px auto;
+    }
+    .personal-details img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    .personal-details a {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 18px;
+      margin-top: 10px;
+      display: block;
+    }
+    .personal-details a:hover {
+      text-decoration: underline;
+    }
+    .content-section {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.content-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.personal-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.social-link, .personal-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.social-link:hover, .personal-link:hover {
+  text-decoration: underline;
+}
+
+.personal-details p {
+  font-size: 1em;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.personal-details a {
+  margin-left: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <button id="menu-home" class="active" onclick="showSection('home')">Home</button>
+    <button id="menu-user-data" onclick="showSection('user-data')">User Data</button>
+    <button id="menu-custom-time-schedule" onclick="showSection('custom-time-schedule')">Custom Time Schedule</button>
+    <button id="menu-private-policy" onclick="showSection('private-policy')">Private Policy</button>
+    <button id="menu-custom" onclick="showSection('custom')">Custom</button>
+    <button id="menu-faq" onclick="showSection('faq')">FAQ</button>
+    <div class="dropdown">
+      <button class="dropbtn">More</button>
+      <div class="dropdown-content" id="submenu">
+        <button id="menu-about-us" onclick="showSection('about-us')">About Us</button>
+        <button id="menu-more" onclick="showSection('more')">More</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div id="home" class="content-section active">
+      <h1>Welcome to My Website</h1>
+      <p>This is the main content area. Enjoy exploring our content!</p>
+    </div>
+    <div id="user-data" class="content-section">
+      <h2>User Data</h2>
+      <div class="container">
+        <select class="dropdown-select" id="unit-select">
+          <option value="liter">Litre</option>
+          <option value="gallon">Gallon</option>
+          <option value="oz">Oz</option>
+        </select>
+        <div class="chart-container">
+          <canvas id="waterChart"></canvas>
+        </div>
+        <div class="data-container">
+          <p>Average Water Consumed: <span id="avg-water">0</span> <span id="unit">Liter</span></p>
+          <p>Average Time Up: <span id="avg-time">0</span> hours</p>
+          <p>Body Water Level: <span id="body-water">0</span>%</p>
+        </div>
+      </div>
+    </div>
+    <div id="custom-time-schedule" class="content-section">
+      <h2>Custom Time Schedule</h2>
+      <div class="schedule-form">
+        <label for="wake-up-time">Wake Up Time:</label>
+        <input type="time" id="wake-up-time">
+        <div class="time-range">
+          <label for="do-not-disturb-start">Do Not Disturb Start:</label>
+          <input type="time" id="do-not-disturb-start">
+          <label for="do-not-disturb-end">Do Not Disturb End:</label>
+          <input type="time" id="do-not-disturb-end">
+        </div>
+      </div>
+    </div>
+    <div id="private-policy" class="content-section">
+      <h2>Private Policy</h2>
+      <p>This is the private policy section.</p>
+    </div>
+    <div id="custom" class="content-section">
+      <h2>Custom</h2>
+      <p>This is the custom section.</p>
+      <div class="container">
+        <div class="grid">
+          <!-- Buttons will be created here by JavaScript -->
+        </div>
+        <div class="button-container">
+          <button class="apply-button">Apply</button>
+          <button class="audio-button">Audio</button>
+          <button class="animations-button">Animations</button>
+        </div>
+        <button class="reset-button" onclick="resetAll()">Reset All</button>
+        <div class="button-container">
+          <button class="try-button" onclick="tryAction()">Try</button>
+          <button class="save-button" onclick="saveAction()">Save</button>
+        </div>
+      </div>
+    </div>
+    <div id="faq" class="content-section">
+      <h2>FAQ</h2>
+      <div class="comment-box">
+        <textarea placeholder="Leave a comment..."></textarea>
+        <button>Submit Comment</button>
+      </div>
+      <p>This is the FAQ section.</p>
+      <ul>
+        <li>Q: What is this?</li>
+        <li>A: This is a FAQ section.</li>
+      </ul>
+    </div>
+    <div id="more" class="content-section">
+        <h2>Personal Details</h2>
+        <div class="personal-details">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Instagram_Direct_Icon.png" alt="Instagram Logo" class="social-icon">
+          <a href="https://www.instagram.com/vivekx___" target="_blank" class="social-link">Instagram: @vivekx___</a>
+          <!-- Add more personal details below -->
+          <p>Email: <a href="mailto:your.email@example.com" class="personal-link">viveksawji@gmail.com</a></p>
+          <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="personal-link">LinkedIn Profile</a></p>
+          <p>Twitter: <a href="https://twitter.com/yourusername" target="_blank" class="social-link">@viveksawji</a></p>
+        </div>
+      </div>
+      
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      
+      const menuItems = document.querySelectorAll('.navbar button');
+      menuItems.forEach(item => item.classList.remove('active'));
+      
+      if(sectionId.includes('custom')) {
+        document.querySelectorAll('.dropdown-content button').forEach(button => {
+          if(button.textContent.toLowerCase() === sectionId) {
+            button.classList.add('active');
+          }
+        });
+      } else {
+        document.getElementById('menu-' + sectionId).classList.add('active');
+      }
+    }
+
+    const ctx = document.getElementById('waterChart').getContext('2d');
+    const waterChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [{
+          label: 'Water Level',
+          data: [0, 0, 0, 0, 0, 0, 0],
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 2,
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Days of the Week'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Water Level'
+            }
+          }
+        }
+      }
+    });
+
+    document.getElementById('unit-select').addEventListener('change', function() {
+      const unit = this.value;
+      document.getElementById('unit').textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
+      // Update chart and data display logic here as needed
+    });
+
+    function createButton() {
+      const button = document.createElement('button');
+      button.className = 'button inactive';
+      button.onclick = () => toggleState(button);
+      return button;
+    }
+
+    function toggleState(button) {
+      if (button.classList.contains('inactive')) {
+        button.classList.remove('inactive');
+        button.classList.add('active');
+      } else {
+        button.classList.remove('active');
+        button.classList.add('inactive');
+      }
+    }
+
+    function createGrid(rows, cols) {
+      const grid = document.querySelector('.grid');
+      for (let i = 0; i < rows * cols; i++) {
+        const button = createButton();
+        grid.appendChild(button);
+      }
+    }
+
+    function resetAll() {
+      const buttons = document.querySelectorAll('.button');
+      buttons.forEach(button => {
+        button.classList.remove('active');
+        button.classList.add('inactive');
+      });
+    }
+
+    function tryAction() {
+      console.log("Try button clicked");
+    }
+ 
+    function saveAction() {
+      console.log("Save button clicked");
+    }
+
+    createGrid(8, 8); // 8 rows and 8 columns
+  </script>
+</body>
+</html>
